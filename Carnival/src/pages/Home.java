@@ -25,6 +25,12 @@ public class Home {
 
 	}
 
+	/**
+	 * Evaluúa si el filtro de duración del Crucero es correcto
+	 * @param driver
+	 * @param logger
+	 * @return
+	 */
 	public boolean evaluateDurationFilter(WebDriver driver, ExtentTest logger)
 
 	{
@@ -42,14 +48,26 @@ public class Home {
 		return true;
 	}
 
+	/**
+	 * Evaluá si por defecto los resultados son en grilla
+	 * @param driver
+	 * @param text
+	 * @return
+	 */
 	public boolean evaluetViewActive(WebDriver driver, String text) {
 
-		driver.findElement(By.xpath("//button[contains(text(), 'The Bahamas')]")).click();
+		
 		if (utilities.waitForElementPresentByXpath(driver,"//p[contains(text(), '"+text+"')]"))
 			return true;
 		else return false;
 	}
 
+	/**
+	 * Selecciona un destino
+	 * @param driver
+	 * @param location
+	 * @throws InterruptedException
+	 */
 	public void selectSailFrom(WebDriver driver, String location) throws InterruptedException {
 
 		driver.findElement(By.id("cdc-destinations")).click();	
@@ -59,6 +77,11 @@ public class Home {
 	}
 
 
+	/**
+	 * Selecciona una draución del crucero
+	 * @param driver
+	 * @param duration
+	 */
 	public void selectDuration(WebDriver driver, String duration) {
 
 		driver.findElement(By.id("cdc-durations")).click();
@@ -66,6 +89,13 @@ public class Home {
 		utilities.waitForElementPresentByXpath(driver,"//a[@class='sbsc-container__reset-selections']");		
 	}
 
+	
+	/**
+	 * Mueve el cursor minimo de la barra desplazable del filtro del precio
+	 * @param driver
+	 * @param i
+	 * @throws InterruptedException
+	 */
 	public void selectAndSetPriceFilterMinimum(WebDriver driver, int i) throws InterruptedException {
 		
 		
@@ -81,6 +111,13 @@ public class Home {
 		
 	}
 
+	/**
+	 * Evalua si el filtro de la barra deslizante es correcto 
+	 * @param driver
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public boolean evaluatePrice(WebDriver driver, int min, int max) {
 	
 		List<WebElement> priceValues= driver.findElements(By.xpath("//span[@class='vrgf-price-box__price']"));		
@@ -98,6 +135,10 @@ public class Home {
 	}
 
 	
+	/**
+	 * Selecciona la opción de ordenar el precio
+	 * @param driver
+	 */
 	public void selectSortPrice(WebDriver driver) {
 		
 		
@@ -107,6 +148,12 @@ public class Home {
 		
 	}
 	
+	/**
+	 * Evalúa si los cruceros se ordenaron por precio de forma descendente
+	 * @param driver
+	 * @param logger
+	 * @return
+	 */
 	public boolean evaluatePriceSortDescending(WebDriver driver, ExtentTest logger) {
 		
 		List<WebElement> priceValues= driver.findElements(By.xpath("//span[@class='vrgf-price-box__price']"));		
@@ -127,6 +174,24 @@ public class Home {
 		
 		
 	}
+
+	/**
+	 * Selecciona un crucero por posición
+	 * @param driver
+	 * @param i
+	 */
+	public void selecCruiseByIndex(WebDriver driver, int i) {
+				
+		
+		for (int i1 = 0; i1<=i; i1++) {
+			
+			if (i1==i) driver.findElement(By.xpath("//ccl-route-map")).click();
+			
+		}
+		utilities.waitForElementPresentByXpath(driver, "//div[@class='itinerary-menu']");
+	}
+	
+	
 }
 
 

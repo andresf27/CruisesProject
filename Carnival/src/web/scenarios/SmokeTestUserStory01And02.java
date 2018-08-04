@@ -328,8 +328,7 @@ public class SmokeTestUserStory01And02 {
 				ex.printStackTrace();			
 				logger.fail(ex.toString());
 				logger.log(Status.FAIL, MarkupHelper.createLabel("Fail" + " - Test Case Failed", ExtentColor.RED));		
-				logger.fail("Last Screen").addScreenCaptureFromPath("imagen");
-				Thread.sleep(5000000);
+				logger.fail("Last Screen").addScreenCaptureFromPath("imagen");			
 				Assert.fail();
 
 			}
